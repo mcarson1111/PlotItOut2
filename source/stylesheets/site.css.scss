@@ -2,7 +2,7 @@
 @import "normalize";
 
 body {
-  background: #ECC561;
+  background: rgb(51, 81, 32);
   text-align: center;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
@@ -10,7 +10,8 @@ body {
 
 .logo img {
   height: 18.75em;
-  margin-top: 6em;
+  margin-top: 0em;
+  box-shadow: 0px 7px 5px #000000;
 }
 
 h1 {
@@ -20,12 +21,27 @@ h1 {
   font-weight: 400;
   margin: 0;
 }
+.about {
+  margin: 3em auto;
+  width: 1100px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: .2em;
+  border-radius: 30px;
+  box-shadow: 0px 2px 7px #000000;
+
+}
 
 .doc {
-  margin: 3em 0;
+
+  width: 1000px;
+  margin: 1.9em auto 1.9em;;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.1em;
+  font-size: 1.5em;
   font-weight: 300;
+  color: rgb(107, 110, 17);
+  text-shadow: 1px 2px 2px #000000;
+
 
   a {
     border: 1px solid white;
