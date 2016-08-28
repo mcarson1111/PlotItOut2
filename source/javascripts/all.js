@@ -26,9 +26,9 @@ $(document).ready(function() {
     User.soilType = soil
     User.hardinessZone = zone
 
-    console.log(User)
-
     sendSoilTypeAndClimate(User)
+
+    //need to do this all as a called function instead of as a document ready so it doesnt keep showing up... :/
 
   })
 })
@@ -47,15 +47,36 @@ function sendSoilTypeAndClimate() {
     // return  veggies
     console.log(result)
     console.log(result.veggies[0].name)
+    console.log(result.veggies)
+
+    allTheVeggies = []
+
+    for (var i=0; i < result.veggies.length; i++) {
+      allTheVeggies.push(result.veggies[i])
+    }
+
+    console.log(allTheVeggies)
+
+    User.allVeggies = allTheVeggies
+
+    console.log(User.allVeggies)
   }})
 
   //send results to next interaction (show veggies)
 
   //hide about div and submit button when clicked
+  // Toggle the class and hide it using css
+
+  showVeggiesToUser(User);
 }
 
 function showVeggiesToUser() {
+ console.log('this is the show veggies function!')
+  console.log(User)
+  console.log(User.allVeggies)
+
   //show veggies div and submit button
+// toggle div class to show using css
 
   //loop through allVeggies array and display names in checkbox
 
