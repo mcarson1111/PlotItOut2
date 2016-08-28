@@ -12,6 +12,7 @@ var User = {
 $(document).ready(function() {
   console.log("Yay! Hi!")
 
+  $( "div.checkbox").toggleClass( "hide" )
 
   var form = $('.form')
 
@@ -47,27 +48,58 @@ function sendSoilTypeAndClimate() {
     // return  veggies
     console.log(result)
     console.log(result.veggies[0].name)
+    console.log('this is result.veggies')
     console.log(result.veggies)
 
     allTheVeggies = []
 
     for (var i=0; i < result.veggies.length; i++) {
       allTheVeggies.push(result.veggies[i])
-    }
 
+    }
+    console.log('this is allTheVeggies after push')
     console.log(allTheVeggies)
 
     User.allVeggies = allTheVeggies
 
+    console.log('this is User.allVeggies after reassignment')
     console.log(User.allVeggies)
+
+    var poopveggies = User.allVeggies
+    console.log(poopveggies)
+    for (var i in poopveggies) {
+      console.log(poopveggies[i].name)
+    }
+
+    for (var i in poopveggies) {
+      var checkbox = document.createElement('input');
+        checkbox.type = "checkbox";
+        checkbox.name = "name";
+        checkbox.value = "value";
+        checkbox.id = "id";
+
+      var label = document.createElement('label')
+        label.htmlFor = "id";
+        label.appendChild(document.createTextNode(poopveggies[i].name));
+
+      document.getElementById("checkbox").appendChild(checkbox);
+      document.getElementById("checkbox").appendChild(label);
+    }
   }})
 
-  //send results to next interaction (show veggies)
 
   //hide about div and submit button when clicked
   // Toggle the class and hide it using css
+  $( "div.form" ).toggleClass( "hide" )
 
+  $( "div.checkbox").toggleClass( "hide" )
+
+
+
+
+  //send results to next interaction (show veggies)
   showVeggiesToUser(User);
+
 }
 
 function showVeggiesToUser() {
