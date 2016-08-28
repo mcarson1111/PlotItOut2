@@ -1,18 +1,17 @@
 // This is where it all goes :)
 //= require jquery
-
+var User = {
+  name: 'User',
+  hardinessZone: '3',
+  soilType: 'loamy',
+  allVeggies: [ ],
+  chosenVeggies: [ ]
+  // plotSize
+}
 
 $(document).ready(function() {
   console.log("Yay! Hi!")
 
-  var User = {
-    name: 'User',
-    hardinessZone: '3',
-    soilType: 'loamy',
-    allVeggies: [ ],
-    chosenVeggies: [ ]
-    // plotSize
-  }
 
   var form = $('.form')
 
@@ -29,31 +28,26 @@ $(document).ready(function() {
 
     console.log(User)
 
+    sendSoilTypeAndClimate(User)
+
   })
 })
-
 
 
 function sendSoilTypeAndClimate() {
   //show about div and submit button
 
   //get the user input (text fields)
-  $('#suchness :input, .text').on('click change', function() {
-
-     User.soilType = $('#suchness :input');
-     User.hardinessZone = $('#suchness :input')
-
-     // adjust settings according to the form data
-     $inputs.each(function() {
-         $(this.name).val($(this).val());
-     });
-    alert("Submitted");
-    console.log(values)
-  });
+  console.log(User)
 
   //save user input to User object
 
-  //send unpout to API
+  //send input to API
+  let veggies = $.ajax({url: 'http://localhost:3001/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
+    // return  veggies
+    console.log(result)
+    console.log(result.veggies[0].name)
+  }})
 
   //send results to next interaction (show veggies)
 
