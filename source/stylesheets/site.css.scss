@@ -47,9 +47,24 @@ a {
   display: none;
 }
 
-#checkbox {
-  display:inline-table;
+#id {
+  display: table-column-group;
+  margin-left: 90px;
 }
+#checkbox{
+  width:500px;
+  margin: auto;
+}
+input[type=checkbox] + label {
+    text-align: left;
+    // text-indent: 10px;
+    height: 20px;
+    width: 380px;
+    display:inline-block;
+    padding: 0 0 0 0px;
+    margin-left: 10px;
+}
+
 
 .doc {
 
