@@ -6,7 +6,7 @@ var User = {
   soilType: 'loamy',
   allVeggies: [ ],
   chosenVeggies: [ ],
-  veggieObjects = { }
+  veggieObjects: { }
   // plotSize
 }
 
@@ -15,6 +15,8 @@ $(document).ready(function() {
 
   $( "div.list").toggleClass( "hide" )
   $( "div.checkbox").toggleClass( "hide" )
+  $( "div.plot").toggleClass( "hide" )
+
 
   var form = $('.form')
 
@@ -56,8 +58,8 @@ function sendSoilTypeAndClimate(User) {
 
   //send input to API
   // let veggies = $.ajax({url: 'http://localhost:3001/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
-  // let veggies = $.ajax({url: 'plants-api.herokuapp.com/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
-  let veggies = $.ajax({url: 'https://git.heroku.com/plants-api.git/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
+  let veggies = $.ajax({url: 'https://plants-api.herokuapp.com/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
+  // let veggies = $.ajax({url: 'https://git.heroku.com/plants-api.git/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
 
     // return  veggies
     console.log(result)
@@ -74,7 +76,16 @@ function sendSoilTypeAndClimate(User) {
 
       veggieObjects = User.veggieObjects
 
-      veggieObjects[v_name] = result.veggie[i]
+      console.log(veggieObjects)
+
+      veggieObjects[v_name] = 'poop'
+
+      console.log(veggieObjects[v_name])
+
+      veggieObjects[v_name] = result.veggies[i]
+
+      console.log(veggieObjects[v_name])
+
     }
 
 
@@ -105,6 +116,7 @@ function sendSoilTypeAndClimate(User) {
   // toggle hide to show checkbox div
   $( "div.checkbox").toggleClass( "hide" )
 
+  $( "div.about").toggleClass( "hide" )
 
 }
 
@@ -183,46 +195,97 @@ function toggleThis() {
 
 function showPlotAndVeggieList() {
 
-$( "div.checkbox").toggleClass( "hide" )
+  $( "div.checkbox").toggleClass( "hide" )
 
-$( "div.list").toggleClass( "hide" )
+  $( "div.list").toggleClass( "hide" )
 
-
-var chosenVeggies = User.chosenVeggies
-
-console.log(chosenVeggies)
+  $( "div.plot").toggleClass( "hide" )
 
 
-var table = document.createElement('table');
 
-// do an if statement here if chosenVeggies == 0
+  var chosenVeggies = User.chosenVeggies
 
-var allVeggies = User.allVeggies
-console.log(allVeggies)
-for (var object of allVeggies) {
-  console.log (object.name)
-var index = allVeggies.indexOf("beans");
-console.log(index)
-console.log(object)
-}
+  console.log(chosenVeggies)
 
-for ( var i of chosenVeggies) {
 
-  // find the key matching i in User.veggieObjects
-  // create a td for each attribute i want to show
+  var table = document.createElement('table');
 
-  var row = document.createElement('row');
+  // do an if statement here if chosenVeggies == 0****
 
-   var td = document.createElement('td');
-     td.innerHTML = i;
-   row.appendChild(td);
 
-   var img = document.createElement('img');
-    img.src = "/images/" + i + ".png";
-   row.appendChild(img);
+  console.log(User.veggieObjects)
 
-   table.appendChild(row);
-}
+  for ( var i of chosenVeggies) {
+
+    // find the key matching i in User.veggieObjects
+    // create a td for each attribute i want to show
+
+    var myObj = User.veggieObjects
+
+    if (i in myObj) {
+      var companions = myObj[i].companions
+    }
+
+    console.log(myObj[i])
+    console.log(myObj[i].companions)
+    console.log(companions)
+
+    if (i in myObj) {
+      var foes = myObj[i].foes
+    }
+
+    console.log(foes)
+
+    if (i in myObj) {
+      var space = myObj[i].space
+    }
+
+    console.log(space)
+
+    if (i in myObj) {
+      var sunshine = myObj[i].sunShine
+    }
+
+    console.log(sunshine)
+
+    if (i in myObj) {
+      var start = myObj[i].start
+    }
+
+    console.log(start)
+
+    var row = document.createElement('tr');
+
+    var th = document.createElement('th');
+      th.innerHTML = i;
+      row.appendChild(th);
+
+    var img = document.createElement('img');
+      img.src = "/images/" + i + ".png";
+      row.appendChild(img);
+
+    var td = document.createElement('td');
+      td.innerHTML = "companions: " + companions;
+      row.appendChild(td);
+
+    var td = document.createElement('td');
+      td.innerHTML = "foes: " + foes;
+      row.appendChild(td);
+
+    var td = document.createElement('td');
+      td.innerHTML = "space needed: " + space;
+      row.appendChild(td);
+
+    var td = document.createElement('td');
+      td.innerHTML = "sunshine needed: " + sunshine;
+      row.appendChild(td);
+
+    var td = document.createElement('td');
+      td.innerHTML = "where to start: " + start;
+      row.appendChild(td);
+
+      table.appendChild(row);
+  }
 
   document.body.appendChild(table);
 
