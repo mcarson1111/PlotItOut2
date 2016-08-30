@@ -5,13 +5,15 @@ var User = {
   hardinessZone: '3',
   soilType: 'loamy',
   allVeggies: [ ],
-  chosenVeggies: [ ]
+  chosenVeggies: [ ],
+  veggieObjects = { }
   // plotSize
 }
 
 $(document).ready(function() {
   console.log("Yay! Hi!")
 
+  $( "div.list").toggleClass( "hide" )
   $( "div.checkbox").toggleClass( "hide" )
 
   var form = $('.form')
@@ -32,10 +34,19 @@ $(document).ready(function() {
     //need to do this all as a called function instead of as a document ready so it doesnt keep showing up... :/
 
   })
+
+
+// this is the submit button for the checkbox div
+  $('#commit').click(function() {
+
+    showPlotAndVeggieList()
+  })
+
+
 })
 
 
-function sendSoilTypeAndClimate() {
+function sendSoilTypeAndClimate(User) {
   //show about div and submit button
 
   //get the user input (text fields)
@@ -44,7 +55,10 @@ function sendSoilTypeAndClimate() {
   //save user input to User object
 
   //send input to API
-  let veggies = $.ajax({url: 'http://localhost:3001/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
+  // let veggies = $.ajax({url: 'http://localhost:3001/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
+  // let veggies = $.ajax({url: 'plants-api.herokuapp.com/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
+  let veggies = $.ajax({url: 'https://git.heroku.com/plants-api.git/veggies?' + 'soil=' + User.soilType +'&zone=' + User.hardinessZone, method: 'GET', success: function(result) {
+
     // return  veggies
     console.log(result)
     console.log(result.veggies[0].name)
@@ -56,7 +70,15 @@ function sendSoilTypeAndClimate() {
     for (var i=0; i < result.veggies.length; i++) {
       allTheVeggies.push(result.veggies[i])
 
+      var v_name = result.veggies[i].name
+
+      veggieObjects = User.veggieObjects
+
+      veggieObjects[v_name] = result.veggie[i]
     }
+
+
+    console.log(User.veggieObjects)
     console.log('this is allTheVeggies after push')
     console.log(allTheVeggies)
 
@@ -65,64 +87,152 @@ function sendSoilTypeAndClimate() {
     console.log('this is User.allVeggies after reassignment')
     console.log(User.allVeggies)
 
-    var poopveggies = User.allVeggies
-    console.log(poopveggies)
-    for (var i in poopveggies) {
-      console.log(poopveggies[i].name)
+    var theVeggies = User.allVeggies
+    console.log(theVeggies)
+    for (var i in theVeggies) {
+      console.log(theVeggies[i].name)
     }
 
-    for (var i in poopveggies) {
-      var checkbox = document.createElement('input');
-        checkbox.type = "checkbox";
-        checkbox.name = "name";
-        checkbox.value = "value";
-        checkbox.id = "id";
-
-      var label = document.createElement('label')
-        label.htmlFor = "id";
-        label.appendChild(document.createTextNode(poopveggies[i].name));
-
-      document.getElementById("checkbox").appendChild(checkbox);
-      document.getElementById("checkbox").appendChild(label);
-    }
+    showVeggiesToUser();
   }})
 
 
   //hide about div and submit button when clicked
   // Toggle the class and hide it using css
-  $( "div.form" ).toggleClass( "hide" )
+  $( "div.soilstuff" ).toggleClass( "hide" )
 
+  // THIS BEONGS IN THE NEXT FUNCTION, BUT THE CALL ISNT WORKING
+  // toggle hide to show checkbox div
   $( "div.checkbox").toggleClass( "hide" )
 
-
-
-
-  //send results to next interaction (show veggies)
-  showVeggiesToUser(User);
 
 }
 
 function showVeggiesToUser() {
+  //show veggies div and submit button
+  // toggle div class to show using css
+  //loop through allVeggies array and display names in checkbox
+  // THIS BELONGS IN THE NEXT FUNCTION, BUT THE CALL ISNT WORKING
+
+  var theVeggies = User.allVeggies
+
+  console.log(theVeggies)
+
+  for (var i of theVeggies) {
+    console.log(i)
+    var checkbox = document.createElement('input');
+      checkbox.type = "checkbox";
+      checkbox.name = "veggies";
+      checkbox.value = i.name;
+      checkbox.id = i.id;
+
+      // checkbox.onclick = toggle(this);
+      // checkbox.id = "i.name";
+      // save the id as the name value? so on submit i can run through the array of veggies and check id each id is selected?
+
+    var label = document.createElement('label')
+      label.htmlFor = i.id;
+      label.appendChild(document.createTextNode(i.name));
+
+    document.getElementById("checkbox").appendChild(checkbox);
+    document.getElementById("checkbox").appendChild(label);
+
+    console.log(i.name)
+
+  }
+
+  var veggies = document.getElementsByName('veggies');
+
+  console.log(veggies)
+
+  for (var i=0; i < veggies.length; i++) {
+    if (veggies[i].type == 'checkbox') {
+      console.log(veggies[i])
+      veggies[i].onclick = toggleThis;
+    }
+  }
+
  console.log('this is the show veggies function!')
   console.log(User)
   console.log(User.allVeggies)
 
-  //show veggies div and submit button
-// toggle div class to show using css
-
-  //loop through allVeggies array and display names in checkbox
-
-  //save chosen veggies to User object (chosenVeggies)
-
-  //hide veggies list div and submit button when button clicked
 }
 
+function toggleThis() {
+  if (this.checked) {
+    console.log($(this))
+    console.log('this is checked')
+    console.log($(this)[0].value)
+
+    User.chosenVeggies.push(($(this)[0].value))
+
+    console.log(User.chosenVeggies)
+
+  } else {
+    console.log('this is not checked')
+
+    var array = User.chosenVeggies
+    var index = array.indexOf(($(this)[0].value));
+
+    array.splice(index, 1)
+
+    console.log(User.chosenVeggies)
+  }
+}
+
+
 function showPlotAndVeggieList() {
+
+$( "div.checkbox").toggleClass( "hide" )
+
+$( "div.list").toggleClass( "hide" )
+
+
+var chosenVeggies = User.chosenVeggies
+
+console.log(chosenVeggies)
+
+
+var table = document.createElement('table');
+
+// do an if statement here if chosenVeggies == 0
+
+var allVeggies = User.allVeggies
+console.log(allVeggies)
+for (var object of allVeggies) {
+  console.log (object.name)
+var index = allVeggies.indexOf("beans");
+console.log(index)
+console.log(object)
+}
+
+for ( var i of chosenVeggies) {
+
+  // find the key matching i in User.veggieObjects
+  // create a td for each attribute i want to show
+
+  var row = document.createElement('row');
+
+   var td = document.createElement('td');
+     td.innerHTML = i;
+   row.appendChild(td);
+
+   var img = document.createElement('img');
+    img.src = "/images/" + i + ".png";
+   row.appendChild(img);
+
+   table.appendChild(row);
+}
+
+  document.body.appendChild(table);
+
+  // LOOP THROUGH ARRAY
   //display div of veggies
+  //compare chosenVeggies array and allVeggies array to find attributes of veggies chosen to display
+  //display image of chosen veggies
 
   //display plot
 
-  //compare chosenVeggies array and allVeggies array to find attributes of veggies chosen to display
 
-  //display image of chosen veggies
+  // IS THIS WHERE THE FUNCTIONALITY FOR DRAG AND DROP SHOULD GO?
 }

@@ -12,27 +12,37 @@
   </div>
 </div>
 
-<div class="form" action="sendSoilTypeAndClimate" on="submit">
-  <form id="suchness">
-    <p>Soil Type:</p><input class="text" id="soil" type="text" name="soil">
-    <label class="soil-label" for="soil">
-      <p><a href="http://learn.eartheasy.com/2013/06/how-to-make-the-most-of-your-soil-type/">Find your soil type</a></p>
-    <p>Hardiness Zone:</p><input class="text" id="zone" type="text" name="zone">
-    <label class="zone-label" for="zone">
-      <p><a href="https://planthardiness.ars.usda.gov/phzmweb/maps.aspx">Find your hardiness zone</a></p>
-       <input type="button" name="submit" id="submit" value="Find Veggies!" />
-  </form>
-
-</div>
-
-<div class="checkbox" action="showPlotAndVeggieList" on="submit">
-  <p> this is a checkbox: </p>
-    <form id="stuff">
-      <p id="checkbox"></p></br>
-      <input type="button" name="submit" id="submit" value="Plot it out!" />
+<div class="soilstuff">
+  <div class="form">
+    <form id="suchness">
+      <p>Soil Type:</p><input class="text" id="soil" type="text" name="soil">
+      <label class="soil-label" for="soil">
+        <p><a href="http://learn.eartheasy.com/2013/06/how-to-make-the-most-of-your-soil-type/">Find your soil type</a></p>
+        <p>Hardiness Zone:</p><input class="text" id="zone" type="text" name="zone">
+        <label class="zone-label" for="zone">
+          <p><a href="https://planthardiness.ars.usda.gov/phzmweb/maps.aspx">Find your hardiness zone</a></p>
+          <input type="button" name="submit" id="submit" value="Find Veggies!" />
     </form>
-
+  </div>
 </div>
+
+
+<div class="checkbox">
+  <div class="form">
+    <p> this is a checkbox: </p>
+      <form id="stuff">
+        <div id="checkbox">
+          <!-- this is where the shit goes -->
+        </div></br>
+        <input type="button" name="submit" id="commit" value="Plot it out!" />
+      </form>
+  </div>
+</div>
+
+<div class= "list">
+  <p> something </p>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
   <script src="all.js"></script>
