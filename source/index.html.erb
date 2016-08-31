@@ -1,4 +1,5 @@
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
 <div class="welcome">
   <div class="logo">
@@ -39,13 +40,23 @@
   </div>
 </div>
 
+
+<div class= "how">
+  <h3> Your Plot! </h3>
+  <p> These are the veggies you chose! They will do well in your hardiness zone and your soil-type, so yay! You're already halfway there! Below you'll find information about these veggies, including their friends (those who do well together), enemies (those who do not do well together), their sunshine needs, whether to start the seeds inside or outside and ay special needs they might have. Whew! Who knew plants were so picky! </p>
+  <p> Plot it out! You can rag and drop the plant images onto the plot and design your garden! This will make it easier to have a successful garden, as many plants do not do well to be moved after being planted. Aldo, ehre you can take into account the information you've learned about the plants! Woo Hoo! Have fun and happy gardening!!</p>
+</div>
+
 <div class= "list">
   <p> Veggies: </p>
 </div>
 
+<script>
+ $( function() {
+   $( ".veggie" ).draggable();
+ } );
+ </script>
+
 <div class="plot">
   <img src= "/images/plot.png">
 </div>
-
-<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-  <script src="all.js"></script>

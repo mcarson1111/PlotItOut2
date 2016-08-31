@@ -16,6 +16,7 @@ $(document).ready(function() {
   $( "div.list").toggleClass( "hide" )
   $( "div.checkbox").toggleClass( "hide" )
   $( "div.plot").toggleClass( "hide" )
+  $( "div.how").toggleClass( "hide" )
 
 
   var form = $('.form')
@@ -201,24 +202,37 @@ function showPlotAndVeggieList() {
 
   $( "div.plot").toggleClass( "hide" )
 
+  $( "div.how").toggleClass( "hide" )
+
+
 
 
   var chosenVeggies = User.chosenVeggies
 
   console.log(chosenVeggies)
 
-
-  var table = document.createElement('table');
-
   // do an if statement here if chosenVeggies == 0****
-
 
   console.log(User.veggieObjects)
 
+
+  var new_div = document.createElement('div');
+  new_div.className = "veggies";
+
   for ( var i of chosenVeggies) {
 
-    // find the key matching i in User.veggieObjects
-    // create a td for each attribute i want to show
+    var img = document.createElement('img');
+      img.src = "/images/" + i + ".png";
+      img.className = i;
+      img.className += " veggie"
+      new_div.appendChild(img);
+  }
+
+
+
+  var table = document.createElement('table');
+
+  for ( var i of chosenVeggies) {
 
     var myObj = User.veggieObjects
 
@@ -260,9 +274,9 @@ function showPlotAndVeggieList() {
       th.innerHTML = i;
       row.appendChild(th);
 
-    var img = document.createElement('img');
-      img.src = "/images/" + i + ".png";
-      row.appendChild(img);
+    // var img = document.createElement('img');
+    //   img.src = "/images/" + i + ".png";
+    //   row.appendChild(img);
 
     var td = document.createElement('td');
       td.innerHTML = "companions: " + companions;
@@ -287,15 +301,11 @@ function showPlotAndVeggieList() {
       table.appendChild(row);
   }
 
+  document.body.appendChild(new_div);
   document.body.appendChild(table);
-
-  // LOOP THROUGH ARRAY
-  //display div of veggies
-  //compare chosenVeggies array and allVeggies array to find attributes of veggies chosen to display
-  //display image of chosen veggies
-
-  //display plot
-
+  // document.body.insertBefore( new_div, table )
+  
+    $( ".veggie" ).draggable();
 
   // IS THIS WHERE THE FUNCTIONALITY FOR DRAG AND DROP SHOULD GO?
 }
