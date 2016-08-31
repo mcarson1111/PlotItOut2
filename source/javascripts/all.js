@@ -35,17 +35,14 @@ $(document).ready(function() {
     sendSoilTypeAndClimate(User)
 
     //need to do this all as a called function instead of as a document ready so it doesnt keep showing up... :/
-
   })
 
 
-// this is the submit button for the checkbox div
+  // this is the submit button for the checkbox div
   $('#commit').click(function() {
 
     showPlotAndVeggieList()
   })
-
-
 })
 
 
@@ -304,8 +301,16 @@ function showPlotAndVeggieList() {
   document.body.appendChild(new_div);
   document.body.appendChild(table);
   // document.body.insertBefore( new_div, table )
-  
-    $( ".veggie" ).draggable();
+
+    // $( '.veggie' ).draggable();
 
   // IS THIS WHERE THE FUNCTIONALITY FOR DRAG AND DROP SHOULD GO?
+  $('.veggie').dblclick(function() {
+    console.log($(this))
+    var $veggie = $(this)
+    var $clone = $veggie.clone(false).appendTo( ".veggies" )
+    $clone.draggable();
+    console.log($clone)
+  })
+
 }
