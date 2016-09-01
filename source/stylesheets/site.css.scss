@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import "normalize";
+// * { outline: 2px dotted red}
 
 body {
   background: rgb(51, 81, 32);
@@ -9,14 +10,27 @@ body {
 }
 
 img {
-  // transform: translateX(-40%);
-  // this but without effing with the plot
+position: static;
 }
 
 .veggies {
   float: right;
   width: 600px;
   margin-right: 60px;
+  // position: fixed;
+  border: 5px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.clones {
+  float: right;
+  width: 1400px;
+  height: 400px;
+  margin-right: 15px;
+  margin-bottom: 25px;
+  border: 5px solid black;
+  border-radius: 10px;
 }
 
 .how {
@@ -45,7 +59,8 @@ td {
 tr {
   margin-bottom: 50px;
   margin-top: 50px;
-  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  padding-bottom: 50px;
 }
 
 th {
@@ -60,10 +75,13 @@ th {
 }
 
 .plot {
+  // background-image: "plot.png";
   float: left;
   margin-left: 45px;
-  margin-top: 250px;
-  margin-bottom: 25px;
+  margin-top: 200px;
+  margin-bottom: 10px;
+  width: 700px;
+  height:350px;
 }
 
 .logo img {
@@ -110,19 +128,34 @@ a {
   margin-left: 90px;
 }
 #checkbox{
-  width:500px;
+  width:435px;
   margin: auto;
 }
 input[type=checkbox] + label {
     text-align: left;
     // text-indent: 10px;
     height: 20px;
-    width: 400px;
+    width: 300px;
     display:inline-block;
     padding: 0 0 0 0px;
     margin-left: 10px;
 }
 
+input {
+  margin-left: 60px;
+}
+
+p > a {
+  margin-left: 60px;;
+}
+
+.hardy {
+  margin-left: 60px;
+}
+
+.soil {
+  margin-left: 60px;
+}
 
 .doc {
 
@@ -172,4 +205,64 @@ input[type=checkbox] + label {
   to {
     -webkit-transform: scale(1);
   }
+}
+
+.beetsstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.broccolistuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.cabbagestuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.carrotsstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.cauliflowerstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.cornstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.kalestuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.lettucestuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.onionsstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.peasstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.pumpkinsstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.squashstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.swiss_chardstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.tomatoesstuff:hover {
+    background-color: rgb(187, 255, 153);
+}
+
+.zucchinistuff:hover {
+    background-color: rgb(187, 255, 153);
 }

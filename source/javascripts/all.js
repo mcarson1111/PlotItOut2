@@ -225,6 +225,8 @@ function showPlotAndVeggieList() {
       new_div.appendChild(img);
   }
 
+  var clones = document.createElement('div');
+  clones.className = "clones";
 
 
   var table = document.createElement('table');
@@ -265,7 +267,8 @@ function showPlotAndVeggieList() {
 
     console.log(start)
 
-    var row = document.createElement('tr');
+    var row = document.createElement('tr')
+    row.className = i + "stuff";
 
     var th = document.createElement('th');
       th.innerHTML = i;
@@ -284,7 +287,7 @@ function showPlotAndVeggieList() {
       row.appendChild(td);
 
     var td = document.createElement('td');
-      td.innerHTML = "space needed: " + space;
+      td.innerHTML = "space needed: " + space + " inches";
       row.appendChild(td);
 
     var td = document.createElement('td');
@@ -298,7 +301,9 @@ function showPlotAndVeggieList() {
       table.appendChild(row);
   }
 
+  // $(".clonelist").append(clones)
   document.body.appendChild(new_div);
+  document.body.appendChild(clones);
   document.body.appendChild(table);
   // document.body.insertBefore( new_div, table )
 
@@ -308,9 +313,32 @@ function showPlotAndVeggieList() {
   $('.veggie').dblclick(function() {
     console.log($(this))
     var $veggie = $(this)
-    var $clone = $veggie.clone(false).appendTo( ".veggies" )
+    var $clone = $veggie.clone(false).appendTo( ".clones" )
     $clone.draggable();
     console.log($clone)
+
   })
+
+
+  $( ".plot" ).droppable({
+    drop: function( event, ui ) {
+      $( this )
+        .addClass( "ui-state-highlight" )
+        console.log(event)
+
+        // document.getElementsByClassName("clones").remove($(this));
+        // document.getElementsByClassName("clones").remove(event.toElement);
+        // document.body.clones.remove($(this))
+        // $(".clones").remove($(this))
+        // $(event.target).append(event.toElement)
+        // $(event.toElement).css({position: "initial"});
+
+        // could make mini divs inside the .plot and have the image snap to one of those?
+        // tried making them append to the image instead of the div
+        // tried confining the size of the plot
+        // tried messing with the position in css of the clones div and of the images that are dropped
+    }
+  });
+
 
 }

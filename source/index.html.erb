@@ -16,10 +16,10 @@
 <div class="soilstuff">
   <div class="form">
     <form id="suchness">
-      <p>Soil Type:</p><input class="text" id="soil" type="text" name="soil">
+      <p class="soil">Soil Type:</p><input class="text" id="soil" type="text" name="soil">
       <label class="soil-label" for="soil">
         <p><a href="http://learn.eartheasy.com/2013/06/how-to-make-the-most-of-your-soil-type/">Find your soil type</a></p>
-        <p>Hardiness Zone:</p><input class="text" id="zone" type="text" name="zone">
+        <p class= "hardy">Hardiness Zone:</p><input class="text" id="zone" type="text" name="zone">
         <label class="zone-label" for="zone">
           <p><a href="https://planthardiness.ars.usda.gov/phzmweb/maps.aspx">Find your hardiness zone</a></p>
           <input type="button" name="submit" id="submit" value="Find Veggies!" />
@@ -30,7 +30,7 @@
 
 <div class="checkbox">
   <div class="form">
-    <p> this is a checkbox: </p>
+    <p> Pick your veggies! </p>
       <form id="stuff">
         <div id="checkbox">
           <!-- this is where the shit goes -->
@@ -44,18 +44,14 @@
 <div class= "how">
   <h3> Your Plot! </h3>
   <p> These are the veggies you chose! They will do well in your hardiness zone and your soil-type, so yay! You're already halfway there! Below you'll find information about these veggies, including their friends (those who do well together), enemies (those who do not do well together), their sunshine needs, whether to start the seeds inside or outside and ay special needs they might have. Whew! Who knew plants were so picky! </p>
-  <p> Plot it out! You can rag and drop the plant images onto the plot and design your garden! This will make it easier to have a successful garden, as many plants do not do well to be moved after being planted. Aldo, ehre you can take into account the information you've learned about the plants! Woo Hoo! Have fun and happy gardening!!</p>
+  <p> Plot it out! To the right of your plot, you'll see a collection of veggies. If you double click on a veggie image, you'll create a new one that you can drag and drop onto the plot and design your garden! This will make it easier to have a successful garden, as many plants do not do well to be moved after being planted. Also, here you can take into account the information you've learned about the plants! Woo Hoo! Have fun and happy gardening!!</p>
 </div>
 
 <div class= "list">
   <p> Veggies: </p>
 </div>
 
-<script>
- $( function() {
-   $( ".veggie" ).draggable();
- } );
- </script>
+<div class="clonelist"></div>
 
 <div class="plot">
   <img src= "/images/plot.png">
